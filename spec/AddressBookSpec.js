@@ -8,6 +8,7 @@ describe('Address Book',function() {
 		thisContact = new Contact();
 	})
 
+
 	it('Should be able to add Contact',function() {
 		
 		addressBook.add_contact(thisContact);
@@ -20,4 +21,23 @@ describe('Address Book',function() {
         addressBook.delete_contact(0);
         expect(addressBook.get_contact(0)).not.toBeDefined();
 	})
+
+});
+
+
+describe('Async Address test',function () {
+	
+		var addressBook = new AddressBook();
+
+		beforeEach(function (done) {
+			addressBook.intial_contacts(function (done) {
+				done();
+			});
+		});
+
+		it('should return intial contacts from server',function (done) {
+			expect(addressBook.async_loading).toBe(true);
+			console.log(addressBook.async_loading);
+			done();
+	});
 });
